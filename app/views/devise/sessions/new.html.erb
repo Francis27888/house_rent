@@ -1,0 +1,41 @@
+
+<br><br>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field form-group row">
+    <div class="col-sm-2">
+     </div>
+    <%= f.label :email, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %><br />
+    <div class="col-sm-6">
+      <%= f.email_field :email, class: 'form-control',auto_focus:true%>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+  
+  <div class="field form-group row"><br>
+   
+   <div class="col-sm-2">
+     </div>
+     <%= f.label :password, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
+    <div class="col-sm-6">
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+  
+
+  <% if devise_mapping.rememberable? -%>
+  
+    <div class="field" style="margin-left:385px">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %><br>
+      <%= f.submit "Log in", class:'btn btn-info',style:'width:550px' %>
+    </div>
+    
+  <% end -%>
+
+  </div>
+<% end %>
+
+<!--<%= render "devise/shared/links" %>-->

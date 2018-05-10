@@ -10,6 +10,80 @@
   </head>
 
   <body>
+    
+  <nav class="navbar navbar-toggleable-md navbar-expand-md navbar-light bg-light">
+  <div class="container">
+   <%=link_to image_tag("logo.PNG",height:'40px'), root_path,class:'navbar-brand'%>
+     
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ 
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%=link_to "Home",root_path,class:'home nav-link'%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "About Us", "#" ,class:'nav-link'%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Contact Us", "#" ,class:'nav-link'%>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          <%= current_user.names.capitalize %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbardrop">
+          <%= link_to "Edit", edit_user_registration_path,class:'dropdown-item'%>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Sign out", destroy_user_session_path,class:'dropdown-item', method: :delete %>
+        </div>
+      </li>
+       <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign up", new_user_registration_path,class:'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sign in", new_user_session_path,class:'nav-link' %>
+      </li>
+       <% end %>
+    </ul>
+  </div>
+  </div>
+</nav>
+<div class="row content">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <!--<% flash.each do |key, value| %>-->
+        <!--  <%= content_tag(:div, value, class: 'alert alert-success alert-dismissible fade show',role:'alert',style:'margin-top:10px') do %>-->
+        <!--    <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+        <!--      <span aria-hidden="true">&times;</span>-->
+        <!--    </button>-->
+        <!--  <% end %>-->
+        <!--<% end %>-->
+         <% flash.each do |key, value| %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top:10px">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <%= value %>
+          </div>
+        <% end %>
     <%= yield %>
+    </div>
+      <div class="col-1">
+  </div>
+    <div class="container-fluid">
+        <footer class="text-white mt-4" style="margin-top:50px;position:fixed;background-color: #343a40;width: 100% ;height: 60px ;bottom: 0 ;text-align: center; padding: 19px ;">
+          <label>© 2018 Copyright house rent.</label>
+        </footer>
+    </div>
   </body>
 </html>

@@ -1,0 +1,18 @@
+<br><h3>Please confirm to save the house</h3><br>
+<%= form_with(model: @house, url: @house, local: true) do |form| %>
+  <%= form.hidden_field :location %>
+  <%= form.hidden_field :number_of_rooms %>
+  <%= form.hidden_field :description %>
+  
+  <p>Location: <%= @house.location %></p>
+  <p>Rooms Number: <%= @house.number_of_rooms %></p>
+  <p>Description: <%= @house.description %></p>
+  <%= form.submit  "Confirm",class:'btn btn-success',style:'float:left'%>
+<% end %>
+
+<%= form_with(model: @house, url: new_house_path, local: true, method: 'get') do |form| %>
+    <%= form.hidden_field :location %>
+    <%= form.hidden_field :number_of_rooms %>
+    <%= form.hidden_field :description %>
+    <%= form.submit "Back", name: 'back',class:'btn btn-info',style:'margin-left:20px' %>
+<% end %>

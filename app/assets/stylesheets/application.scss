@@ -1,0 +1,26 @@
+@import "bootstrap";
+@import 'bootstrap/glyphicons';
+@import "home";
+
+/*
+*= require material_icons
+*/
+
+body{
+    background-color:#f9fafc;
+}
+
+.bg-light {
+    background-color: #ffffff !important; 
+    border-bottom-color: #6a9df1 !important;
+    border-bottom: 2px solid;
+}
+.content{
+    margin-bottom:100px;
+}
+
+@media screen and (min-width: 768px) {
+    .home{
+        margin-left:30px;
+    }
+}

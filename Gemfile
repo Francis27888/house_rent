@@ -51,6 +51,7 @@ gem 'dotenv-rails' ##Add
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'devise', '~> 4.4', '>= 4.4.3'
+gem "figaro"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -66,6 +67,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem "binding_of_caller"
+  gem 'letter_opener_web'
 end
 
 group :test do

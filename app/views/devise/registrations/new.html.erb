@@ -1,0 +1,84 @@
+<!--<h4 style="text-align:center;margin-top:20px">Sign up Form</h4>-->
+<br><br>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field form-group row"><br>
+   
+   <div class="col-sm-2">
+     </div>
+     <%= f.label :names, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
+    <div class="col-sm-6">
+      <%= f.text_field :names, class: 'form-control' %>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+  
+  <div class="field form-group row">
+    <div class="col-sm-2">
+     </div>
+    <%= f.label :email, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %><br />
+    <div class="col-sm-6">
+      <%= f.email_field :email, class: 'form-control'%>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+  
+  <div class="field form-group row"><br>
+   
+   <div class="col-sm-2">
+     </div>
+     <%= f.label :phone_number, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
+    <div class="col-sm-6">
+      <%= f.text_field :phone_number, class: 'form-control' %>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+  
+  <div class="field form-group row"><br>
+   
+   <div class="col-sm-2">
+     </div>
+     <%= f.label :user_category, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
+    <div class="col-sm-6">
+      <%= f.select(:user_category, [ 'House Owner', 'Renter' ],{:prompt => "select user category"}, { :class => 'form-control' }) %>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+  
+  <div class="field form-group row">
+    <div class="col-sm-2">
+     </div>
+    <%= f.label :password, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
+    
+    <div class="col-sm-6">
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+
+  <div class="field form-group row">
+    <div class="col-sm-2">
+     </div>
+    <%= f.label :password_confirmation , class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px'%><br />
+    <div class="col-sm-6">
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+    </div>
+    <div class="col-sm-2">
+     </div>
+  </div>
+
+  <div style="text-align:center">
+      <%= f.submit 'Sign Up', class: 'btn btn-primary btn-save', style:'width:550px;margin-left:200px' %>
+  </div>
+<% end %>
+
+<!--<%= render "devise/shared/links" %>-->

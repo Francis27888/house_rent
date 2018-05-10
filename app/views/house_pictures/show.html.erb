@@ -1,0 +1,8 @@
+<p>
+  <strong>Image:</strong>
+  <!--<%= @house_picture.image %>-->
+  <%= image_tag @house_picture.image_url %>
+</p>
+
+<%= link_to 'Edit', edit_house_picture_path(@house_picture) %> |
+<%= link_to 'Back', house_house_pictures_path(@house_picture.house_id)%>

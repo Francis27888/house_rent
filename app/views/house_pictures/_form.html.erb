@@ -1,0 +1,24 @@
+
+<%= form_for [@house,@house_picture], local: true do |form| %>
+  <% if @house_picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@house_picture.errors.count, "error") %> prohibited this house_picture from being saved:</h2>
+
+      <ul>
+      <% @house_picture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image ,id: :house_picture_id %>
+    <%= form.hidden_field :image_cache %>
+  </div><br>
+
+<div style="float:left">
+       <%= form.submit 'Save', class: 'btn btn-primary btn-save', style:'width:100px' %>
+  </div> 
+<% end %>
