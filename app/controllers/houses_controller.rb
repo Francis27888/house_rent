@@ -26,8 +26,8 @@ class HousesController < ApplicationController
       @house.booked_status='booked'
       respond_to do |format|
         if @house.update(booked_status: @house.booked_status)
-          BookingMailer.booking_mail(current_user,@owner,@house).deliver_later
-          BookingMailer.booking_mail(current_user,@owner,@house).deliver_later
+          BookingMailer.booking_mail_renter(current_user,@owner,@house).deliver_later
+          BookingMailer.booking_mail_owner(current_user,@owner,@house).deliver_later
           format.html{redirect_to root_path, notice: 'House is booked successfully!!!'}
           format.json{head :no_content}
           else
