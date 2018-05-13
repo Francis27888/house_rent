@@ -1,10 +1,13 @@
 
- <h1 style="text-align:center">These house owned by <b><%= @owner.names%></b></h1><br>
- 
+ <h1 style="float:left">These house owned by <b><%= @owner.names%></b></h1>
+ <%= link_to new_house_path,style:'text-align:right;margin-top:10px',class:'btn btn-success float-right' do %>
+    <i class="glyphicon glyphicon-plus"></i>New House
+  <% end %>
+  <div class="clearfix"></div>
   <div class="row">
     <% @houses.each do |house| %>
       
-        <div class="col col-6">
+        <div class="col col-6 col-md-6 col-sm-12">
           <div style="background-color:#FFFFFF;margin:10px;padding:10px">
           <h5>This house has <b><%= house.number_of_rooms %></b> rooms and located in <b><%= house.location %></b>.</h5>
           <label style="font-size:10px"></label>
@@ -35,5 +38,3 @@
   
 <br>
 
-
-<%= link_to 'New House', new_house_path %>

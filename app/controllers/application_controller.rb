@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
     def after_sign_in_path_for(resource)
-       home_another_path
+       if current_user.user_category=='Renter'
+        # house_booking_path(params[:id])
+        root_path
+       else
+         home_another_path
+       end
     end
 end

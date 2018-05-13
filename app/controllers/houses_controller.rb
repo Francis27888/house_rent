@@ -1,6 +1,6 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :set_house, only: [:show, :edit, :update, :destroy,:booking,:house_booking]
+  before_action :authenticate_user!, except: [:show,:booking]
   def index
     @owner=User.find_by(id: current_user.id)
     @houses = House.all.where(user_id: current_user.id).order('created_at desc')
@@ -13,6 +13,31 @@ class HousesController < ApplicationController
   
   def show
     @owner=User.find_by(id: @house.user_id)
+  end
+  def booking
+    @owner=User.find_by(id: @house.user_id)
+    # @photos=HousePicture.joins("INNER JOIN houses ON houses.id = house_pictures.house_id").select("houses.id,houses.user_id,houses.location,houses.number_of_rooms,houses.description,house_pictures.image").where("houses.id=#{@house.id}")
+    @photos=HousePicture.all.where(house_id: @house.id)
+  end
+  def house_booking
+    @owner=User.find_by(id: @house.user_id)
+    @photos=HousePicture.all.where(house_id: @house.id)
+    if current_user.user_category=='Renter'
+      @house.booked_status='booked'
+      respond_to do |format|
+        if @house.update(booked_status: @house.booked_status)
+          BookingMailer.booking_mail(current_user,@owner,@house).deliver_later
+          BookingMailer.booking_mail(current_user,@owner,@house).deliver_later
+          format.html{redirect_to root_path, notice: 'House is booked successfully!!!'}
+          format.json{head :no_content}
+          else
+          format.html { render action: "booking" }
+          format.json { render json: @house.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to new_user_registration_path, notice: 'You must have a renter account please create the account first.'
+    end
   end
   def new
     if params[:back]

@@ -1,8 +1,15 @@
-<p>
+<p><br><br>
   <strong>Image:</strong>
   <!--<%= @house_picture.image %>-->
-  <%= image_tag @house_picture.image_url %>
+  <%= image_tag(@house_picture.image_url(:thumb)) if @house_picture.image?%>
 </p>
 
-<%= link_to 'Edit', edit_house_picture_path(@house_picture) %> |
-<%= link_to 'Back', house_house_pictures_path(@house_picture.house_id)%>
+<%= link_to edit_house_picture_path(@house_picture) ,class:'btn btn-info',style:'margin-left:40px;margin-top:10px;float:left' do%>
+  <div style="float:left"><i class="glyphicon glyphicon-pencil"></i></div>Edit
+<% end %>
+<%= link_to house_house_pictures_path(@house_picture.house_id),class:'btn btn-success',style:'margin-left:40px;margin-top:10px' do%>
+  <div style="padding-top:3px;float:left"><i class="glyphicon glyphicon-arrow-left"></i></div>Back
+<% end %>
+
+
+

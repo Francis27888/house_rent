@@ -1,25 +1,28 @@
-<h1>House Pictures</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @house_pictures.each do |house_picture| %>
-      <tr>
-        <td><%= house_picture.image %></td>
-        <td><%= link_to 'Show', house_picture_path(house_picture.id) %></td>
-        <td><%= link_to 'Edit', edit_house_picture_path(house_picture) %></td>
-        <td><%= link_to 'Destroy',house_picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div>
+  <h1 style="float:left">Your House Pictures</h1>
+  <%= link_to new_house_house_picture_path(@house),style:'text-align:right;margin-top:10px',class:'btn btn-success float-right' do %>
+    <i class="glyphicon glyphicon-plus"></i>Add New House Picture
+  <% end %>
+</div><br>
+<div class="clearfix"></div>
+    <div class="row">
+      <% @house_pictures.each do |house_picture| %>
+        <div class="col col-4">
+          <div style="background-color:#FFFFFF;text-align:center;margin:10px;padding:10px">
+          <%= image_tag(house_picture.image_url(:thumb),style:'width:280px;height: 200px;') if house_picture.image?%><br>
+            <%= link_to house_picture_path(house_picture.id) ,class:'btn btn-info btn-sm',style:'margin-left:40px;margin-top:10px;float:left' do%>
+              <div style="float:left"><i class="glyphicon glyphicon-eye-open"></i></div>Show
+            <% end %>
+            <%= link_to edit_house_picture_path(house_picture),class:'btn btn-info btn-sm',style:'margin-left:20px;margin-top:10px;float:left' do%>
+              <div style="float:left"><i class="glyphicon glyphicon-pencil"></i></div>Edit
+            <% end %>
+           <%= link_to house_picture, method: :delete, data: { confirm: 'Are you sure?' } ,class:'btn btn-danger btn-sm',style:'margin-left:-20px;margin-top:10px' do%>
+                <div style="float:left"><i class="glyphicon glyphicon-trash"></i></div>Delete
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 <br>
 
-<%= link_to 'New House Picture', new_house_house_picture_path(@house) %>
+

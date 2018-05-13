@@ -52,6 +52,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem "figaro"
+gem 'pry-rails', group: [:development, :test]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
