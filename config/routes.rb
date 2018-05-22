@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'about/index', as: 'about_us'
   get 'contact/index', as: 'contact_us'
   get 'home/search'
+  get '/users' => 'registrations#index'
   get 'house/:id/booking' => 'houses#booking',as: 'house_booking'
   get 'house/:id/booking/booked' => 'houses#house_booking',as:'after_house_booking'
   get 'houses/:id/booked/:booked_status' => 'houses#booked',as: 'booked'
