@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_03_132732) do
+ActiveRecord::Schema.define(version: 2018_05_18_102359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "charges", force: :cascade do |t|
+    t.string "stripe_id"
+    t.string "card_brand"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.date "expire_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
 
   create_table "house_pictures", force: :cascade do |t|
     t.text "image"
@@ -32,6 +44,17 @@ ActiveRecord::Schema.define(version: 2018_05_03_132732) do
     t.bigint "user_id"
     t.text "description"
     t.index ["user_id"], name: "index_houses_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "stripeId"
+    t.string "cardBrand"
+    t.string "cardLast4"
+    t.string "cardExpMonth"
+    t.string "cardExpYear"
+    t.date "expiresAt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

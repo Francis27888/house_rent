@@ -3,12 +3,16 @@ class HousesController < ApplicationController
   before_action :authenticate_user!, except: [:show,:booking]
   def index
     @owner=User.find_by(id: current_user.id)
-    @houses = House.all.where(user_id: current_user.id).order('created_at desc')
-
+    @houses = House.all.where(user_id: current_user.id).order('created_at desc').page(params[:page]).per(4)
+    @charges=Charge.find_by(user_id: current_user.id)
     respond_to do |format|
       format.html
       format.json { render json: @houses }
     end
+  end
+  
+  def booked
+    @booked=House.all.where(user_id: current_user.id,booked_status: params[:booked_status]).order('created_at desc').page(params[:page]).per(4)
   end
   
   def show
@@ -36,7 +40,7 @@ class HousesController < ApplicationController
         end
       end
     else
-      redirect_to new_user_registration_path, notice: 'You must have a renter account please create the account first.'
+      redirect_to root_path, notice: 'You must have a renter account please create the account first.'
     end
   end
   def new
@@ -61,6 +65,26 @@ class HousesController < ApplicationController
     @user=User.find_by(id: current_user.id)
     @house = House.new(house_params)
     @house.booked_status="not booked"
+    
+    # token=params[:stripeToken]
+    # card_brand=params[:charge][:card_brand]
+    # card_exp_month=params[:charge][:card_exp_month]
+    # card_exp_year=params[:charge][:card_exp_year]
+    # card_last4=params[:charge][:card_last4]
+    
+    # charge=Stripe::Charge.create({
+    #   :amount => 500,
+    #   :currency => 'usd',
+    #   :description => 'House posted',
+    #   :statement_descriptor => 'House posted',
+    #   :source => token
+    #   })
+      
+    # @charge=Charge.new(charge_params)
+    # @charge.user_id=current_user.id
+    # @charge.stripe_id=charge.id
+    # @charge.save!(card_exp_year: card_exp_year)
+    
     respond_to do |format|
       if @house.save
         HouseMailer.house_mail(@user,@house).deliver_later
@@ -71,6 +95,11 @@ class HousesController < ApplicationController
         format.json { render json: @house.errors, status: :unprocessable_entity }
       end
     end
+    
+    # rescue Stripe::CardError => e
+    #   flash.alert = e.message
+    #   render action: :new
+   
   end
    def update
     respond_to do |format|
@@ -99,6 +128,11 @@ class HousesController < ApplicationController
   def house_params
     params.require(:house).permit(:location,:number_of_rooms,:booked_status,:description).merge(user: current_user)
   end
+ 
+  # def charge_params
+  #     params.require(:charge).permit(:card_brand,:card_last4,:card_exp_month,:card_exp_year)
+  # end
+ 
   def set_house
     @house = House.find(params[:id])
   end

@@ -1,0 +1,42 @@
+
+ <h3 style="float:left;margin-top:8px;margin-left:10px">These house owned by <b><%= current_user.names%> and <%= params[:booked_status]%></b></h3>
+ <%= link_to new_house_path,style:'text-align:right;margin-top:10px',class:'btn btn-success float-right col-xs-12' do %>
+    <i class="glyphicon glyphicon-plus"></i>New House
+  <% end %>
+  <div class="clearfix"></div>
+  <div class="row">
+    <% @booked.each do |booked| %>
+      
+        <div class="col col-6 col-md-6 col-sm-12 col-xs-12">
+          <div style="background-color:#FFFFFF;margin:10px;padding:10px">
+          <h5>This house has <b><%= booked.number_of_rooms %></b> rooms and located in <b><%= booked.location %> (<label style="color:#0c6bd1"><%=booked.booked_status%></label>)</b>.</h5>
+          <label style="font-size:10px"></label>
+          <p>
+            <%= booked.description.truncate(200, omission: '... (continued)') %>
+          </p>
+          <%= link_to new_house_house_picture_path(booked.id),class:'btn btn-info btn-sm' ,style:'width:180px;float:left' do%>
+            <div style="float:left"><i class="glyphicon glyphicon-plus"></i></div>Add house pictures
+          <% end %>
+          <%= link_to  booked,class:'btn btn-info btn-sm' ,style:'margin-left:20px;width:80px' do %>
+            <div style="padding-top:3px;float:left"><i class="glyphicon glyphicon-eye-open"></i></div>View
+          <% end %>
+          <%= link_to  edit_house_path(booked) ,class:'btn btn-info btn-sm' ,style:'margin-left:20px;width:80px;float:left' do%>
+            <div style="float:left"><i class="glyphicon glyphicon-pencil"></i></div>Edit
+          <% end %>
+          
+          <%= link_to  house_path(booked.id),method: :delete,data:{confirm:'are you sure you want to delete?'},class:'btn btn-danger btn-sm',style:'margin-left:20px;width:100px' do%>
+                <div style="padding-top:3px;float:left"><i class="glyphicon glyphicon-trash"></i></div>Delete
+          <% end %>
+         </div>  
+        </div>
+      
+      <p>
+       
+     
+    <% end %>
+    </div>
+  <div class="container pagination justify-content-center">
+     <%= paginate @booked , theme: 'twitter-bootstrap-4'%>
+  </div>
+<br>
+

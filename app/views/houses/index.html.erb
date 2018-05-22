@@ -9,7 +9,7 @@
       
         <div class="col col-6 col-md-6 col-sm-12">
           <div style="background-color:#FFFFFF;margin:10px;padding:10px">
-          <h5>This house has <b><%= house.number_of_rooms %></b> rooms and located in <b><%= house.location %> (<label style="color:yellow"><%=house.booked_status%></label>)</b>.</h5>
+          <h5>This house has <b><%= house.number_of_rooms %></b> rooms and located in <b><%= house.location %> (<label style="color:#0c6bd1"><%=house.booked_status%></label>)</b>.</h5>
           <label style="font-size:10px"></label>
           <p>
             <%= house.description.truncate(200, omission: '... (continued)') %>
@@ -35,6 +35,8 @@
      
     <% end %>
     </div>
-  
+  <div class="container pagination justify-content-center">
+     <%= paginate @houses , theme: 'twitter-bootstrap-4'%>
+  </div>
 <br>
 

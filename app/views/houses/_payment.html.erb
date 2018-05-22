@@ -1,0 +1,54 @@
+<!--<% if !@house.persisted? %>-->
+    
+<!--    <div class="field row">-->
+<!--        <div class="col-sm-1"></div>-->
+<!--        <div class="col-sm-10">-->
+<!--            <h6>Payment</h6>-->
+<!--            <div class="pay_msg">-->
+<!--                <span class="glyphicon glyphicon-credit-card"></span>-->
+<!--                House posting cost only <strong>$5</strong> so make it worth.-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="form-row row">-->
+<!--        <div class="col-sm-1"></div>-->
+<!--        <div class="col-sm-10">-->
+<!--            <label for="card-element">-->
+<!--              Credit or debit card-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div style="float:left;visibility: hidden;">d</div>-->
+<!--        <div class="col-sm-1"></div>-->
+<!--        <div class="col-sm-10">-->
+<!--            <div id="card-element">-->
+              <!-- A Stripe Element will be inserted here. -->
+<!--            </div>-->
+<!--        </div>-->
+        <!-- Used to display form errors. -->
+<!--        <div class="col-sm-1"></div>-->
+<!--        <div class="col-sm-10">-->
+<!--            <div id="card-errors" role="alert"></div>-->
+<!--        </div>-->
+<!--      </div>-->
+      
+<!--      <% if @charges.present? %>-->
+<!--       <div class="field row">-->
+<!--            <div class="col-sm-1"></div>-->
+<!--            <div class="col-sm-10">-->
+<!--              <h6>Previously used cards</h6>-->
+<!--              <table class="table table-responsive table-bordered">-->
+<!--                  <thead>-->
+<!--                      <th>Card Brand</th>-->
+<!--                      <th>Last 4 Digits</th>-->
+<!--                      <th>Expiration Month</th>-->
+<!--                      <th>Expiration Year</th>-->
+<!--                  </thead>-->
+<!--                  <tr><%= current_user.charges.card_brand%></tr>-->
+<!--                  <tr><%= current_user.charges.card_last4%></tr>-->
+<!--                  <tr><%= current_user.charges.card_exp_month%></tr>-->
+<!--                  <tr><%= current_user.charges.card_exp_year%></tr>-->
+<!--              </table>-->
+<!--            </div>-->
+<!--        </div>     -->
+<!--      <% end %>-->
+<!--<% end %>-->

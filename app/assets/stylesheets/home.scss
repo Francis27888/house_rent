@@ -10,9 +10,20 @@
  -webkit-box-shadow:none; 
 //  border-color:#cccccc; 
  border: 1px solid #31a0e0;
+ border-radius: 0px;
 }
 .btn-default{
     background-color: #31a0e0;
     color: #ffffff;
     width:100px;
+}
+.easy-autocomplete{
+  width:91% !important;
+}
+
+// .easy-autocomplete input{
+//   width: 91%;
+// }
+.easy-autocomplete-container{
+    width: 91%;
 }
