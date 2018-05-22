@@ -1,5 +1,14 @@
 
- <h3 style="float:left;margin-top:8px;margin-left:10px">These house owned by <b><%= current_user.names%> and <%= params[:booked_status]%></b></h3>
+<% if @booked.present? %>
+  <h3 style="float:left;margin-top:8px;margin-left:10px">These house owned by <b><%= current_user.names%> and <%= params[:booked_status]%></b></h3>
+<% else %>
+ <% if params[:booked_status]=='booked' %>
+     <h3 style="float:left;margin-top:8px;margin-left:10px">None of your houses is booked</b></h3>
+ <% else %>
+  <h3 style="float:left;margin-top:8px;margin-left:10px">All of your house has been booked%></b></h3>
+ <% end %>
+<% end %>
+
  <%= link_to new_house_path,style:'text-align:right;margin-top:10px',class:'btn btn-success float-right col-xs-12' do %>
     <i class="glyphicon glyphicon-plus"></i>New House
   <% end %>
