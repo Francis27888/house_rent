@@ -14,8 +14,8 @@
           <p>
             <%= sanitize house.description.truncate(200, omission: '... (continued)') %>
           </p>
-          <%= link_to new_house_house_picture_path(house.id),class:'btn btn-info btn-sm' ,style:'width:180px;float:left' do%>
-            <div style="float:left"><i class="glyphicon glyphicon-plus"></i></div>Add house pictures
+          <%= link_to house_house_pictures_path(house.id),class:'btn btn-info btn-sm' ,style:'width:180px;float:left' do%>
+            <div style="float:left"><i class="glyphicon glyphicon-list"></i></div>Add house pictures
           <% end %>
           <%= link_to  house,class:'btn btn-info btn-sm' ,style:'margin-left:20px;width:80px' do %>
             <div style="padding-top:3px;float:left"><i class="glyphicon glyphicon-eye-open"></i></div>View
