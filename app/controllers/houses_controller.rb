@@ -17,6 +17,7 @@ class HousesController < ApplicationController
   
   def show
     @owner=User.find_by(id: @house.user_id)
+    @photos=HousePicture.all.where(house_id: @house.id)
   end
   def booking
     @owner=User.find_by(id: @house.user_id)

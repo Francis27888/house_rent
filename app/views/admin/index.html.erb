@@ -1,0 +1,49 @@
+<h3 style="text-align:center"> List of houses</h3>
+
+<!--<p><%= notice %></p>-->
+<div class="myTable">
+<table class="table table-bordered table-hover table-sm">
+    <thead class="bg-light">
+          <tr>
+            <th>ID</th>
+            <th>House owner</th>
+            <th>Location</th>
+            <th>Rooms</th>
+            <th>Description</th>
+            <th colspan="3" style="text-align:center">Details</th>
+          </tr>
+    </thead>
+    <tbody>
+<%@houses.each do |house|%>
+    <tr>
+        <td><%= house.id%></td>
+        <% @user=User.find_by(id: house.user_id)%>
+        <td><%= @user.names%></td>
+        <td><%= house.location%></td>
+        <td><%= house.number_of_rooms%></td>
+        <td><%= sanitize house.description.truncate(70, omission: '... (continued)') %></td>
+        <td style="text-align:center">
+            <%= link_to  house,class:'btn btn-info btn-sm' do %>
+              <i class="glyphicon glyphicon-eye-open"></i>
+            <% end %>
+        </td>
+        <td style="text-align:center">
+            <%= link_to  edit_house_path(house) ,class:'btn btn-info btn-sm' do%>
+              <i class="glyphicon glyphicon-pencil"></i>
+            <% end %>
+        </td>
+        <td style="text-align:center">
+          <%= link_to  house_path(house.id),method: :delete,data:{confirm:'are you sure you want to delete?'},class:'btn btn-danger btn-sm' do%>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </td>
+    </tr>
+    
+   
+<% end %>
+</tbody>
+</table>
+<div class="container pagination justify-content-center">
+              <%= paginate @houses , theme: 'twitter-bootstrap-4'%>
+            </div>
+</div>

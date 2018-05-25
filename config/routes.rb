@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'houses/index'
+  get 'admin/index',as: 'admin'
+  get 'admin/users',as: 'users_list'
   get 'home/another'
   get 'about/index', as: 'about_us'
   get 'contact/index', as: 'contact_us'
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   get 'house/:id/booking/booked' => 'houses#house_booking',as:'after_house_booking'
   get 'houses/:id/booked/:booked_status' => 'houses#booked',as: 'booked'
   post 'house/:id/booking/booked' => 'houses#house_booking',as: 'client_house_booking'
+  
+  delete 'delete/users/:id' => 'admin#destroy_user',as: 'delete_user'
   
   # post 'houses/house_booking'
   devise_for :users, controllers: { registrations: "registrations" }

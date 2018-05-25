@@ -12,7 +12,7 @@
           <h5>This house has <b><%= house.number_of_rooms %></b> rooms and located in <b><%= house.location %> (<label style="color:#0c6bd1"><%=house.booked_status%></label>)</b>.</h5>
           <label style="font-size:10px"></label>
           <p>
-            <%= house.description.truncate(200, omission: '... (continued)') %>
+            <%= sanitize house.description.truncate(200, omission: '... (continued)') %>
           </p>
           <%= link_to new_house_house_picture_path(house.id),class:'btn btn-info btn-sm' ,style:'width:180px;float:left' do%>
             <div style="float:left"><i class="glyphicon glyphicon-plus"></i></div>Add house pictures

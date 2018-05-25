@@ -1,7 +1,7 @@
 class HousePicturesController < ApplicationController
   before_action :set_house, only: [:new,:create,:index]
   before_action :set_house_picture, only: [:show, :edit, :update, :destroy,:set_house]
- 
+  before_action :authenticate_user!
   # GET /house_pictures
   # GET /house_pictures.json
   def index

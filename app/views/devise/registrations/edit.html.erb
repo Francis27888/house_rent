@@ -44,7 +44,7 @@
      </div>
      <%= f.label :user_category, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
     <div class="col-sm-6">
-        <% if current_user.user_category=="admin"%>
+        <% if current_user.user_category.downcase=="admin"%>
           <%= f.select(:user_category, [ 'Admin','House Owner', 'Renter' ],{:prompt => "select user category"}, { :class => 'form-control' }) %>
         <%else%>
           <%= f.select(:user_category, [ 'House Owner', 'Renter' ],{:prompt => "select user category"}, { :class => 'form-control' }) %>

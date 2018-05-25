@@ -17,4 +17,5 @@
 //= require jquery.easy-autocomplete
 //= require popper
 //= require bootstrap
+//= require trix
 //= require_tree .

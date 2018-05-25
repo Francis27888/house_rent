@@ -13,15 +13,12 @@
   </div>
   
   <div class="field form-group row"><br>
-   
-   <div class="col-sm-2">
-     </div>
+   <div class="col-sm-2"></div>
      <%= f.label :password, class: 'col-sm-2 control-label', style:'text-align:right;margin-top:7px' %>
     <div class="col-sm-6">
       <%= f.password_field :password, class: 'form-control' %>
     </div>
-    <div class="col-sm-2">
-     </div>
+    <div class="col-sm-2"></div>
   </div>
   
 
@@ -29,13 +26,18 @@
   
     <div class="field" style="margin-left:385px">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %><br>
-      <%= f.submit "Log in", class:'btn btn-info',style:'width:550px' %>
+      <%= f.label :remember_me %>
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name),style:'margin-left:250px' %><br />
+      <% end -%><br>
+      <%= f.submit "Log in", class:'btn btn-info',style:'width:550px' %><br><br>
+      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+        <%= link_to "Didn't receive confirmation email?", new_confirmation_path(resource_name),style:'margin-left: 120px;' %><br />
+      <% end -%>
     </div>
-    
+   
   <% end %>
 
-  </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<!--<%= render "devise/shared/links" %>-->

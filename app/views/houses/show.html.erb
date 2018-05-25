@@ -1,12 +1,20 @@
-<h1>Please make sure you add at least one house image to get shown to the clients</h1>
+<h5>Please make sure you add at least one house image to get shown to the clients</h5>
 <p>
   <h3>This house owned by <b><%= @owner.names%></b></h3><br>
   <p>This house has <%= @house.number_of_rooms %> rooms.</p>
 </p>
 <br>
 <p>
-  <%= @house.description %>
+  <%= sanitize @house.description %>
 </p>
+<br>
+<div class="row">
+    <% @photos.each do |photo|%>
+      <div class="col col-3">
+          <%=image_tag(photo.image_url(:thumb),style:'width:100%;height:200px;margin-bottom:20px')%>
+      </div>
+    <% end %>
+</div>
 <%= link_to new_house_house_picture_path(@house.id),class:'btn btn-info' ,style:'width:200px;float:left' do%>
   <div style="float:left"><i class="glyphicon glyphicon-plus"></i></div>Add house picture
 <% end %>
@@ -14,5 +22,5 @@
   <div style="float:left"><i class="glyphicon glyphicon-pencil"></i></div>Edit
 <% end %>
 <%= link_to  houses_path,class:'btn btn-success' ,style:'margin-left:20px;width:100px' do %>
-  <div style="padding-top:3px;float:left"><i class="glyphicon glyphicon-arrow-left"></i></div>Back
+  <div style="padding-top:3px;float:left"><i class="glyphicon glyphicon-list"></i></div>Houses
 <% end %>
