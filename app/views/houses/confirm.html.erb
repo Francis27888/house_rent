@@ -15,7 +15,7 @@
             
             <p>Location: <%= @house.location %></p>
             <p>Rooms Number: <%= @house.number_of_rooms %></p>
-            <p>Description: <%= @house.description %></p>
+            <p>Description: <%= sanitize @house.description %></p>
             <hr/>
           </div>
         </div>
