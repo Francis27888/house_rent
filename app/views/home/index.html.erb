@@ -17,13 +17,13 @@
     <% @check_house_image=HousePicture.find_by(house_id: house.id)%>
     <%if @check_house_image.present? && house.booked_status != 'booked'%>
       <div class="col col-4">
-        <%=image_tag(house.house_pictures.first.image.image_url(:thumb),style:'height:200px;width:100%')%>
+        <%=image_tag(house.house_pictures.first.image_url(:thumb),style:'height:200px;width:100%')%>
         <br><br>
         <h6>Owned by <i><%= @owner.names %></i></h6>
         <h6>It is located in <%= house.location %> with <%= house.number_of_rooms%> rooms</h6>
         <br>
         <p>
-          <%= house.description.truncate(200)%>
+          <%= sanitize house.description.truncate(200)%>
         </p>
         <%=link_to 'Read more', house_booking_path(house.id),class:'btn btn-info',style:'margin-top:20px;margin-bottom: 10px;'%>
       </div>

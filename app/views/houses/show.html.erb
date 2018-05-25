@@ -11,7 +11,7 @@
 <div class="row">
     <% @photos.each do |photo|%>
       <div class="col col-3">
-          <%=image_tag(photo.image.image_url(:thumb),style:'width:100%;height:200px;margin-bottom:20px')%>
+          <%=image_tag(photo.image_url(:thumb),style:'width:100%;height:200px;margin-bottom:20px')%>
       </div>
     <% end %>
 </div>
