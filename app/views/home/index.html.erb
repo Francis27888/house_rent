@@ -10,8 +10,8 @@
     </div>
   <% end %>
   <br>
-  
-  <div class="row">
+  <%if @houses.present?%>
+    <div class="row">
   <% @houses.each do |house|%>
     <% @owner=User.find(house.user_id)%>
     <% @check_house_image=HousePicture.find_by(house_id: house.id)%>
@@ -30,6 +30,9 @@
     <% end %>
   <% end %>
   </div>
+  <% else %>
+     <label style="text-align:center">I did not have anything.</label>
+  <% end %>
   <div class="container pagination justify-content-center">
      <%= paginate @houses , theme: 'twitter-bootstrap-4'%>
   </div>
