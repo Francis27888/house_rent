@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "home#index"
   get 'houses/index'
   get 'admin/index',as: 'admin'
   get 'admin/users',as: 'users_list'
@@ -16,7 +17,6 @@ Rails.application.routes.draw do
   
   # post 'houses/house_booking'
   devise_for :users, controllers: { registrations: "registrations" }
-  root to: "home#index"
   resources :houses do
       resources :house_pictures, shallow: true
       collection do
