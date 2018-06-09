@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: "home#index"
-  get 'houses/index'
   get 'admin/index',as: 'admin'
   get 'admin/users',as: 'users_list'
   get 'home/another'
@@ -8,7 +7,6 @@ Rails.application.routes.draw do
   get 'contact/index', as: 'contact_us'
   get 'home/search'
   get '/users' => 'registrations#index'
-  get 'house/:id/booking' => 'houses#booking',as: 'house_booking'
   get 'house/:id/booking/booked' => 'houses#house_booking',as:'after_house_booking'
   get 'houses/:id/booked/:booked_status' => 'houses#booked',as: 'booked'
   post 'house/:id/booking/booked' => 'houses#house_booking',as: 'client_house_booking'
@@ -20,6 +18,10 @@ Rails.application.routes.draw do
     resources :house_pictures, shallow: true
       collection do
         post :confirm 
+      end
+    
+      member do
+        get 'booking'
       end
   end
   
