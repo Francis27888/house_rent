@@ -57,6 +57,8 @@ gem 'pry-rails', group: [:development, :test]
 gem 'stripe'
 gem 'trix'
 gem 'client_side_validations'
+gem 'rubocop', '~> 0.56.0', require: false
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

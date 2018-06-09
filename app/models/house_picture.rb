@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+# HousePicture
+
 class HousePicture < ApplicationRecord
-    mount_uploader :image, ImageUploader
-    belongs_to :house
+  belongs_to :house
+  mount_uploader :image, ImageUploader
 end
