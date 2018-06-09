@@ -15,14 +15,14 @@ Rails.application.routes.draw do
   
   delete 'delete/users/:id' => 'admin#destroy_user',as: 'delete_user'
   
-  # post 'houses/house_booking'
   devise_for :users, controllers: { registrations: "registrations" }
   resources :houses do
-      resources :house_pictures, shallow: true
+    resources :house_pictures, shallow: true
       collection do
         post :confirm 
-     end
+      end
   end
+  
   if Rails.env.development?
    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
